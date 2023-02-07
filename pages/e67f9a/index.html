@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>react受控和非受控组件 | yuadhのinterview_note</title>
+    <meta name="generator" content="VuePress 1.9.5">
+    <link rel="icon" href="/img/favicon.ico">
+    <meta name="description" content="yuadh的面试笔记网站">
+    <meta name="keywords" content="yuadh个人面试笔记网站">
+    <meta name="theme-color" content="#11a8cd">
+    
+    <link rel="preload" href="/assets/css/0.styles.1a8fa0bc.css" as="style"><link rel="preload" href="/assets/js/app.85915171.js" as="script"><link rel="preload" href="/assets/js/2.68cc8c44.js" as="script"><link rel="preload" href="/assets/js/29.05f69bfc.js" as="script"><link rel="prefetch" href="/assets/js/10.bbbc158b.js"><link rel="prefetch" href="/assets/js/11.d369f77a.js"><link rel="prefetch" href="/assets/js/12.2df2e0c2.js"><link rel="prefetch" href="/assets/js/13.f9e3c2b4.js"><link rel="prefetch" href="/assets/js/14.a92cd37c.js"><link rel="prefetch" href="/assets/js/15.781d1409.js"><link rel="prefetch" href="/assets/js/16.7fa321a8.js"><link rel="prefetch" href="/assets/js/17.6ab202f5.js"><link rel="prefetch" href="/assets/js/18.1a27d2aa.js"><link rel="prefetch" href="/assets/js/19.3da5cbab.js"><link rel="prefetch" href="/assets/js/20.1fd3b090.js"><link rel="prefetch" href="/assets/js/21.b22c76a6.js"><link rel="prefetch" href="/assets/js/22.2634c2ca.js"><link rel="prefetch" href="/assets/js/23.5aff7e63.js"><link rel="prefetch" href="/assets/js/24.4c139f0f.js"><link rel="prefetch" href="/assets/js/25.e450fb7c.js"><link rel="prefetch" href="/assets/js/26.ff0075b2.js"><link rel="prefetch" href="/assets/js/27.98089b22.js"><link rel="prefetch" href="/assets/js/28.5faf04b4.js"><link rel="prefetch" href="/assets/js/3.ec6089ea.js"><link rel="prefetch" href="/assets/js/30.c177236c.js"><link rel="prefetch" href="/assets/js/31.6394b9e4.js"><link rel="prefetch" href="/assets/js/32.3a53fdd1.js"><link rel="prefetch" href="/assets/js/33.86bf84ac.js"><link rel="prefetch" href="/assets/js/34.fd4fc47c.js"><link rel="prefetch" href="/assets/js/35.75b6eab4.js"><link rel="prefetch" href="/assets/js/36.9fb1af18.js"><link rel="prefetch" href="/assets/js/37.e1e8e4a8.js"><link rel="prefetch" href="/assets/js/38.4412b531.js"><link rel="prefetch" href="/assets/js/39.d69b0bc0.js"><link rel="prefetch" href="/assets/js/4.8f7ec523.js"><link rel="prefetch" href="/assets/js/40.626b72c9.js"><link rel="prefetch" href="/assets/js/41.68052477.js"><link rel="prefetch" href="/assets/js/42.5e513bfc.js"><link rel="prefetch" href="/assets/js/43.906a8a35.js"><link rel="prefetch" href="/assets/js/44.a92597fa.js"><link rel="prefetch" href="/assets/js/45.1d296301.js"><link rel="prefetch" href="/assets/js/46.870b43bb.js"><link rel="prefetch" href="/assets/js/47.958479e9.js"><link rel="prefetch" href="/assets/js/48.22e1287d.js"><link rel="prefetch" href="/assets/js/49.6f78ab18.js"><link rel="prefetch" href="/assets/js/5.ee867fce.js"><link rel="prefetch" href="/assets/js/50.a66f7f59.js"><link rel="prefetch" href="/assets/js/51.69bbb479.js"><link rel="prefetch" href="/assets/js/52.63b11e40.js"><link rel="prefetch" href="/assets/js/53.a19d04bf.js"><link rel="prefetch" href="/assets/js/54.8a49b361.js"><link rel="prefetch" href="/assets/js/55.c9e928f9.js"><link rel="prefetch" href="/assets/js/56.44895c58.js"><link rel="prefetch" href="/assets/js/57.b3d36188.js"><link rel="prefetch" href="/assets/js/58.85354619.js"><link rel="prefetch" href="/assets/js/59.85b16e63.js"><link rel="prefetch" href="/assets/js/6.eaba5766.js"><link rel="prefetch" href="/assets/js/60.b1008012.js"><link rel="prefetch" href="/assets/js/61.05f782d9.js"><link rel="prefetch" href="/assets/js/62.a84ea078.js"><link rel="prefetch" href="/assets/js/63.3e0f64e2.js"><link rel="prefetch" href="/assets/js/64.d0773b26.js"><link rel="prefetch" href="/assets/js/65.201c9d2f.js"><link rel="prefetch" href="/assets/js/66.022a5411.js"><link rel="prefetch" href="/assets/js/67.1cff8268.js"><link rel="prefetch" href="/assets/js/68.a18268f9.js"><link rel="prefetch" href="/assets/js/7.38795195.js"><link rel="prefetch" href="/assets/js/8.124fdfe3.js"><link rel="prefetch" href="/assets/js/9.8f91cfa5.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.1a8fa0bc.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/img/logo.png" alt="yuadhのinterview_note" class="logo"> <span class="site-name can-hide">yuadhのinterview_note</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/code/" class="nav-link">前端基础</a></div><div class="nav-item"><a href="/frame/" class="nav-link">软件框架</a></div><div class="nav-item"><a href="/algorithm/" class="nav-link">算法|数据结构</a></div><div class="nav-item"><a href="/base/" class="nav-link">基础学科</a></div><div class="nav-item"><a href="/system/" class="nav-link">系统|工具</a></div><div class="nav-item"><a href="/project/" class="nav-link">项目</a></div><div class="nav-item"><a href="/interviews/" class="nav-link">面试综合</a></div><div class="nav-item"><a href="/part/" class="nav-link">专栏</a></div> <a href="https://github.com/yuadh/interview2" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><!----> <nav class="nav-links"><div class="nav-item"><a href="/code/" class="nav-link">前端基础</a></div><div class="nav-item"><a href="/frame/" class="nav-link">软件框架</a></div><div class="nav-item"><a href="/algorithm/" class="nav-link">算法|数据结构</a></div><div class="nav-item"><a href="/base/" class="nav-link">基础学科</a></div><div class="nav-item"><a href="/system/" class="nav-link">系统|工具</a></div><div class="nav-item"><a href="/project/" class="nav-link">项目</a></div><div class="nav-item"><a href="/interviews/" class="nav-link">面试综合</a></div><div class="nav-item"><a href="/part/" class="nav-link">专栏</a></div> <a href="https://github.com/yuadh/interview2" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>vscode</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>vue</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>react</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading open"><span>heima</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/pages/5082ac/" class="sidebar-link">react快速开始</a></li><li><a href="/pages/e67f9a/" aria-current="page" class="active sidebar-link">react受控和非受控组件</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level2"><a href="/pages/e67f9a/#受控组件" class="sidebar-link">受控组件</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level4"><a href="/pages/e67f9a/#使用步骤" class="sidebar-link">使用步骤</a></li><li class="sidebar-sub-header level4"><a href="/pages/e67f9a/#示例demo" class="sidebar-link">示例demo</a></li><li class="sidebar-sub-header level4"><a href="/pages/e67f9a/#多表单元素优化" class="sidebar-link">多表单元素优化</a></li><li class="sidebar-sub-header level5"><a href="/pages/e67f9a/#步骤" class="sidebar-link">步骤</a></li><li class="sidebar-sub-header level5"><a href="/pages/e67f9a/#示例demo-2" class="sidebar-link">示例demo</a></li></ul></li><li class="sidebar-sub-header level2"><a href="/pages/e67f9a/#非受控组件" class="sidebar-link">非受控组件</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level4"><a href="/pages/e67f9a/#使用步骤-2" class="sidebar-link">使用步骤</a></li></ul></li><li class="sidebar-sub-header level2"><a href="/pages/e67f9a/#评论列表案例" class="sidebar-link">评论列表案例</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level3"><a href="/pages/e67f9a/#需求分析" class="sidebar-link">需求分析</a></li><li class="sidebar-sub-header level3"><a href="/pages/e67f9a/#搭建评论列表的模板" class="sidebar-link">搭建评论列表的模板</a></li><li class="sidebar-sub-header level3"><a href="/pages/e67f9a/#渲染评论列表" class="sidebar-link">渲染评论列表</a></li><li class="sidebar-sub-header level3"><a href="/pages/e67f9a/#渲染暂无评论" class="sidebar-link">渲染暂无评论</a></li><li class="sidebar-sub-header level3"><a href="/pages/e67f9a/#获取评论信息" class="sidebar-link">获取评论信息</a></li><li class="sidebar-sub-header level3"><a href="/pages/e67f9a/#发表评论" class="sidebar-link">发表评论</a></li></ul></li></ul></li><li><a href="/pages/d4ac65/" class="sidebar-link">react组件通信</a></li><li><a href="/pages/a33ce9/" class="sidebar-link">react生命周期</a></li><li><a href="/pages/f24f8d/" class="sidebar-link">react路由</a></li><li><a href="/pages/361177/" class="sidebar-link">react的hooks</a></li><li><a href="/pages/bfa1be/" class="sidebar-link">react生态redux</a></li><li><a href="/pages/6cbc7a/" class="sidebar-link">react生态router</a></li></ul></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>react官方</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-06225672><div class="articleInfo" data-v-06225672><ul class="breadcrumbs" data-v-06225672><li data-v-06225672><a href="/" title="首页" class="iconfont icon-home router-link-active" data-v-06225672></a></li> <li data-v-06225672><a href="/frame/#软件框架" data-v-06225672>软件框架</a></li><li data-v-06225672><a href="/frame/#react" data-v-06225672>react</a></li><li data-v-06225672><a href="/frame/#heima" data-v-06225672>heima</a></li></ul> <div class="info" data-v-06225672><div title="作者" class="author iconfont icon-touxiang" data-v-06225672><a href="https://github.com/yuadh" target="_blank" title="作者" class="beLink" data-v-06225672>yuadh</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-06225672><a href="javascript:;" data-v-06225672>2022-12-01</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-title">目录</div> <div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABH1JREFUSA3tVl1oHFUUPmdmd2ltklqbpJDiNnXFmgbFktho7YMPNiJSSZM0+CAYSkUELVhM6YuwIPpgoOKDqOBDC0XE2CQoNtQXBUFTTcCi+Wlh1V2TQExsUzcltd3M9Tt3ZjZzZ2fT+OJTL8yeM+eee757fmeJbq//KQL8X3DUSFOcfr7cRsRtxNQMWueeVzOkaITIGqQHNg5y8+jNW9ldM7A6nTpAjuolUikAwq7CE3WcM2RRDz+XGVgN3FptU/aUSlvq9Pa3iZ1+sgAqJyyAFqkipd9dqiwHF3P65YycLWc/6sqGrvoEoIp6DOFaX5h6+dnfjkWprwqsPk0dUGq5vySwDImC10KxFHgGL1SWoc92O3eVht09qdXNH11I2SsTsJYqMWzihqGMi+A+Garf3BAuuLI5oGlULyNfyB/HYNujwktOfRrMr5t77NmevqaUopx0grnKAyvVpmwUDB4x6FPXuGvYLTDwWsejwgtgkYKPqRJg8SV6xaiZ3ZTppGneS4yfH5/66fZSDHv+QZci/+h5c5UHtpy67JUqGppM0sh0Nc1dW6/N1W5Yoqat8/TU/VnadmdeW2PLLSyh0cvxBs3KbqTmwYPpxN4do/mzE8nEpvX/UMu2Wbp74zUAK5q6WkHns7V0eWkdPbPzd3rxkTGybadYySumVzhcaJFbs5UrEkQ/+CK8gF5dnh/6ciIZ73gwQ927L1IitoxKLXYP3SjYdOrHHfTZhRRlFyrorafPk20B3HPD1y2G3qKZME5Jcf3t/HUC13/8tSd++vqFveMUTwAUxSUFI1QekR1+bIze3D9MF2aq6cPvG72CgnldWCFqyRw3lwH8ZMerjTD9ElRO7Gv44wNpC90aASqGfVlz/Rx17srQ57/UU26hkhQqUB7dBR71WmzQhHUnblGmVOEw0jhbV1n9OlXUDCIRGaNV5Jp43N516fN7JmnTHdfp7Hgy0luO4aMhtkLL8Bi3bUWYvzh5Mn1dTxrL6QmGuRhGL/TiTTxRoEdTszSaq9GR0NGA3KdkOz3hqSV3MIDhQ5IVX/Ivx3umBti2es2h4eZby7x8br1rkf7Mo90AqC8aQ3sJeNzqFRu+vSANAQe3PL7l0HGOAdwDCeZYvNKeoZp1Qfs6Aipndh86HmFRi0LAnEO47wsqM6cdfjh3jBPUzhZy7nvlUfFsamED1VQt6aISHVymXZ/B2aCtIG8AI8xfobj2d3en1wWVhOeHELKmLQ1s211s88comkv4UCwWyF787mJdYXtNfhKAXVqnKTq8QZvGAGGOfaTo5pGZ/PwbUCr5+DPr/1J92JNHr9aOl/F3iI5+O1nfybsGxoimvZ3ViWSluDITw3P37mypheDIPY0tw7+O/5ApbkYw+zpfaUVu32Pi98+defdUhEpZkRFq0aqyNh9FuL9hpYbEm6iwi0z2REd09ZmyENEbuhjDWzKvZXTqKYaBIr3tt5kuPtQBZFvEUwHt60vfCNu41XsksH9Ij1BMMz1Y0OOunHNShFIP5868g5zeXmuLwL9T4b6Q2+KejgAAAABJRU5ErkJggg==">react受控和非受控组件<!----></h1> <!----> <div class="theme-vdoing-content content__default"><h2 id="受控组件"><a href="#受控组件" class="header-anchor">#</a> 受控组件</h2> <ul><li>HTML中的表单元素是可输入的，也就是有自己的可变状态</li> <li>而React中可变状态通常保存在state中，并且只能通过<code>setState()</code> 方法来修改</li> <li>React讲state与表单元素值value绑定在一起，有state的值来控制表单元素的值</li> <li>受控组件：值受到react控制的表单元素</li></ul> <h4 id="使用步骤"><a href="#使用步骤" class="header-anchor">#</a> 使用步骤</h4> <ul><li>在state中添加一个状态，作为表单元素的value值</li> <li>给表单元素绑定change事件，将表单元素的值设置为state的值</li></ul> <h4 id="示例demo"><a href="#示例demo" class="header-anchor">#</a> 示例demo</h4> <div class="language-react line-numbers-mode"><pre class="language-text"><code>class App extends React.Component {
+    constructor(){
+        super()
+        this.inputChange = this.inputChange.bind(this)
+    }
+    state = {
+        txt : ''
+    }
+    inputChange(e){
+       this.setState({
+           txt: e.target.value
+       })
+    }
+    render(){
+        console.log(this.state);
+        
+        return (
+            &lt;div&gt;
+                {/* 把state的值设置给输入框的value，绑定change事件，这样用户在输入内容的时候调用相应函数，在函数里面把当前设置的值赋值给state，从而达到数据的统一 */}
+                &lt;input type=&quot;text&quot; value={this.state.txt} onChange={this.inputChange}/&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+ReactDOM.render(&lt;App /&gt;,document.getElementById('root'))
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br></div></div><h4 id="多表单元素优化"><a href="#多表单元素优化" class="header-anchor">#</a> 多表单元素优化</h4> <ul><li>问题：每个表单元素都有一个单独的事件处理函数，这样太繁琐</li> <li>优化：使用一个事件处理程序同时处理多个表单元素</li></ul> <h5 id="步骤"><a href="#步骤" class="header-anchor">#</a> 步骤</h5> <ul><li>给表单元素添加name属性（用来区分是哪一个表单），名称与state相同（用来更新数据的）</li> <li>根据表单内容来获取对应值</li> <li>在change事件处理程序中通过 [name] 来修改对应的state</li></ul> <h5 id="示例demo-2"><a href="#示例demo-2" class="header-anchor">#</a> 示例demo</h5> <div class="language-react line-numbers-mode"><pre class="language-text"><code>inputChange(e){
+   let target = e.target;
+   let value = target.type == 'checkbox' ? target.checked : target.value;
+   this.setState({
+       [e.target.name]: value
+   })
+}
+&lt;input type=&quot;text&quot; value={this.state.txt} name=&quot;txt&quot; onChange={this.inputChange}/&gt;
+&lt;input type=&quot;checkbox&quot; value={this.state.isChecked} name=&quot;isChecked&quot; onChange={this.inputChange}/&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h2 id="非受控组件"><a href="#非受控组件" class="header-anchor">#</a> 非受控组件</h2> <ul><li>说明：借助于ref，使用元素DOM方式获取表单元素值</li> <li>ref的作用：获取DOM或者组件</li></ul> <h4 id="使用步骤-2"><a href="#使用步骤-2" class="header-anchor">#</a> 使用步骤</h4> <ul><li>调用 <code>React.createRef()</code> 方法创建ref对象</li> <li>将创建好的 ref 对象添加到文本框中</li> <li>通过ref对象获取到文本框的值</li></ul> <div class="language-react line-numbers-mode"><pre class="language-text"><code>class App extends React.Component {
+    constructor(){
+        super()
+        
+        //创建 ref
+        this.txtRef = React.createRef()
+    }
+    // 获取文本框的值
+    getTxt =() =&gt; {
+        console.log(this.txtRef.current.value)
+    }
+    render(){
+        return (
+          &lt;div&gt;
+            &lt;input type =&quot;text&quot; ref={this.txtRef} /&gt;
+            &lt;button onClick ={this.getTxt}&gt;获取值&lt;/button&gt;
+          &lt;/div&gt;
+        )
+    }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><h2 id="评论列表案例"><a href="#评论列表案例" class="header-anchor">#</a> 评论列表案例</h2> <h3 id="需求分析"><a href="#需求分析" class="header-anchor">#</a> 需求分析</h3> <ul><li>渲染评论列表（列表渲染）</li> <li>没有评论数据时渲染：暂无评论（条件渲染）</li> <li>获取评论信息，包括评论人和评论内容（受控组件）</li> <li>发表评论，更新评论列表（<code>setState()</code>）</li></ul> <h3 id="搭建评论列表的模板"><a href="#搭建评论列表的模板" class="header-anchor">#</a> 搭建评论列表的模板</h3> <ul><li>结构</li></ul> <div class="language-react line-numbers-mode"><pre class="language-text"><code>import React from 'react'
+import ReactDOM from 'react-dom'
+
+/* 
+  评论列表案例
+
+  comments: [
+    { id: 1, name: 'jack', content: '沙发！！！' },
+    { id: 2, name: 'rose', content: '板凳~' },
+    { id: 3, name: 'tom', content: '楼主好人' }
+  ]
+*/
+
+import './index.css'
+
+class App extends React.Component {
+  render() {
+    return (
+      &lt;div className=&quot;app&quot;&gt;
+        &lt;div&gt;
+          &lt;input className=&quot;user&quot; type=&quot;text&quot; placeholder=&quot;请输入评论人&quot; /&gt;
+          &lt;br /&gt;
+          &lt;textarea
+            className=&quot;content&quot;
+            cols=&quot;30&quot;
+            rows=&quot;10&quot;
+            placeholder=&quot;请输入评论内容&quot;
+          /&gt;
+          &lt;br /&gt;
+          &lt;button&gt;发表评论&lt;/button&gt;
+        &lt;/div&gt;
+
+        &lt;div className=&quot;no-comment&quot;&gt;暂无评论，快去评论吧~&lt;/div&gt;
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;h3&gt;评论人：jack&lt;/h3&gt;
+            &lt;p&gt;评论内容：沙发！！！&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+
+// 渲染组件
+ReactDOM.render(&lt;App /&gt;, document.getElementById('root'))
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br></div></div><ul><li>样式</li></ul> <div class="language-css line-numbers-mode"><pre class="language-css"><code><span class="token selector">.app</span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid #999<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.user</span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+  <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.content</span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+  <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.no-comment</span> <span class="token punctuation">{</span>
+  <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">margin-top</span><span class="token punctuation">:</span> 30px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><h3 id="渲染评论列表"><a href="#渲染评论列表" class="header-anchor">#</a> 渲染评论列表</h3> <ul><li>在state中初始化评论列表数据</li></ul> <div class="language-react line-numbers-mode"><pre class="language-text"><code>  state = {
+    comments: [
+      { id: 1, name: 'jack', content: '沙发！！！' },
+      { id: 2, name: 'rose', content: '板凳~' },
+      { id: 3, name: 'tom', content: '楼主好人' }
+    ]
+  }
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><ul><li>使用数组的map方法遍历state中的列表数据</li> <li>给每一个被遍历的li元素添加key属性</li> <li>在render方法里的ul节点下嵌入表达式</li></ul> <div class="language-react line-numbers-mode"><pre class="language-text"><code>{
+  this.state.comments.map(item =&gt; {
+    return (
+       &lt;li key={item.id}&gt;
+          &lt;h3&gt;{item.name}&lt;/h3&gt;
+          &lt;p&gt;{item.content}&lt;/p&gt;
+       &lt;/li&gt;
+    )
+  })
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h3 id="渲染暂无评论"><a href="#渲染暂无评论" class="header-anchor">#</a> 渲染暂无评论</h3> <ul><li><p>判断列表数据的长度是否为0</p></li> <li><p>如果为0，则渲染暂无评论</p></li> <li><p>如果不为0，那么渲染列表数据</p></li> <li><p>在jsx中大量写逻辑会导致很臃肿，所以我们可以把条件渲染的逻辑抽取成一个函数</p></li></ul> <div class="language-react line-numbers-mode"><pre class="language-text"><code>/**
+ * 条件渲染，这里抽取出来了，这样在结构中不会很混乱
+ */
+renderList(){
+  if (this.state.comments.length === 0) {
+    return (&lt;div className=&quot;no-comment&quot;&gt;暂无评论，快去评论吧~&lt;/div&gt;)
+  } else {
+    return (
+      &lt;ul&gt; {
+        this.state.comments.map(item =&gt; {
+          return (
+            &lt;li key={item.id}&gt;
+              &lt;h3&gt;{item.name}&lt;/h3&gt;
+              &lt;p&gt;{item.content}&lt;/p&gt;
+            &lt;/li&gt;
+          )
+        })
+      }
+      &lt;/ul&gt;
+    )
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><ul><li>在render的return方法里面调用这个函数即可</li></ul> <div class="language-react line-numbers-mode"><pre class="language-text"><code>render() {
+  return (
+    &lt;div&gt;
+      ...
+      {/* 通过条件渲染来判断是否显示暂无评论 */}
+      {this.renderList()}
+    &lt;/div&gt;
+  )
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h3 id="获取评论信息"><a href="#获取评论信息" class="header-anchor">#</a> 获取评论信息</h3> <ul><li>通过受控组件来获取内容</li> <li>初始化用户名和用户内容的state</li></ul> <div class="language-react line-numbers-mode"><pre class="language-text"><code>userName: '',
+userContent: ''
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><ul><li>在结构中，把表单元素的value与state进行绑定，还需要绑定name属性和onChange属性</li></ul> <div class="language-react line-numbers-mode"><pre class="language-text"><code>&lt;input className=&quot;user&quot; type=&quot;text&quot; placeholder=&quot;请输入评论人&quot; value={this.state.userName} name=&quot;userName&quot; onChange={this.handleForm}/&gt;
+&lt;br /&gt;
+&lt;textarea
+  className=&quot;content&quot;
+  cols=&quot;30&quot;
+  rows=&quot;10&quot;
+  placeholder=&quot;请输入评论内容&quot;
+  value={this.state.userContent}
+  name=&quot;userContent&quot;
+  onChange={this.handleForm}
+/&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><ul><li>在<code>handleFrom</code>函数中利用<code>setState</code>来让数据保持一致</li></ul> <div class="language-react line-numbers-mode"><pre class="language-text"><code>  handleForm = (e) =&gt; {
+     this.setState({
+       [e.target.name] : e.target.value
+     })
+  }
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h3 id="发表评论"><a href="#发表评论" class="header-anchor">#</a> 发表评论</h3> <ul><li>给按钮绑定事件</li> <li>在事件处理程序中，通过state获取评论信息</li> <li>将评论信息添加到state中，利用setState来更新页面</li> <li>添加评论前需要判断用户是否输入内容</li> <li>添加评论后，需要情况文本框用户输入的值</li></ul> <div class="language-react line-numbers-mode"><pre class="language-text"><code>handleClick = (e) =&gt; {
+  // 拿到用户输入的内容
+  let {userName,userContent} = this.state
+  if(userName.trim()==='' || userContent.trim() === ''){
+      alert('请输入内容')
+      return
+  }
+  // 利用数组拓展运算符来进行数据的拼接，把用户输入的存放在数组的第一个位置
+  let newComments = [{
+    id: this.state.comments.length+1,
+    name: userName,
+    content: userContent
+  },...this.state.comments]
+  this.setState({
+    comments: newComments,
+    userName:'',
+    userContent: ''
+  })
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div></div></div> <!----> <div class="page-edit"><div class="edit-link"><a href="https://github.com/yuadh/interview2/edit/master/docs/02.软件框架/06.react/01.heima/02.react受控和非受控组件.md" target="_blank" rel="noopener noreferrer">编辑</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2023/02/07, 15:11:55</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/pages/5082ac/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">react快速开始</div></a> <a href="/pages/d4ac65/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">react组件通信</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/pages/5082ac/" class="prev">react快速开始</a></span> <span class="next"><a href="/pages/d4ac65/">react组件通信</a>→
+      </span></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/code" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/pages/e0384f/"><div>
+            青训营真题day01
+            <!----></div></a> <span class="date">02-07</span></dt></dl><dl><dd>02</dd> <dt><a href="/pages/332858/"><div>
+            01day01-html与css
+            <!----></div></a> <span class="date">02-07</span></dt></dl><dl><dd>03</dd> <dt><a href="/pages/0da785/"><div>
+            day02-js
+            <!----></div></a> <span class="date">02-07</span></dt></dl> <dl><dd></dd> <dt><a href="/code" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><div class="icons"><a href="https://github.com/yuadh" title="GitHub" target="_blank" class="iconfont icon-github"></a></div> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2022-2023
+    <span>yuadh | <a href="https://github.com/yuadh/interview2/blob/master/LICENSE" target="_blank">MIT License</a></span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <!----> <!----> <!----></div><div class="global-ui"><div></div></div></div>
+    <script src="/assets/js/app.85915171.js" defer></script><script src="/assets/js/2.68cc8c44.js" defer></script><script src="/assets/js/29.05f69bfc.js" defer></script>
+  </body>
+</html>
